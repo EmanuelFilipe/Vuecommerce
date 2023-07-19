@@ -1,2 +1,2 @@
 # Vuecommerce
-Criação de um E-Commerce em SPA com Vue2
+Criação de um E-Commerce SPA com Vue2
