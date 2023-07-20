@@ -17,4 +17,4 @@ Para executar essa API siga esses comandos:
   > Se for a primeira vez:
     execute o comando no terminal para baixar todas as dependências: npm i   
 - execute o comando: npm run serve
-  o app irá rodar no localhost 
+  o app irá rodar no localhost
