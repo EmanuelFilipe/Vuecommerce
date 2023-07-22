@@ -1,4 +1,4 @@
-import Dashboard from '@/views/Dashboard.vue';
+//import Dashboard from '@/views/Dashboard.vue';
 import ControleDeProdutos from "@/views/ControleDeProdutos";
 import ControleDeClientes from "@/views/ControleDeClientes";
 import Login from "@/views/Login";
@@ -6,14 +6,14 @@ import Produto from "@/views/Produto";
 
 const routes = [
     {
-        path: '/',
-        name: 'Dashboard',
-        component: Dashboard,
-        title: 'Dashboard',
-        // objeto que pode receber vários parâmetros
-        meta: {
-            requiredAuth: true
-        }
+      path: '/',
+      name: 'Login',
+      component: Login,
+      title: 'Login',
+      // objeto que pode receber vários parâmetros
+      meta: {
+          requiredAuth: false
+      }
     },
     {
       path: '/login',

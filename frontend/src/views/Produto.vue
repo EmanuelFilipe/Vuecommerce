@@ -9,7 +9,7 @@
       </div>
     </div>
 
-    <div class="row">
+    <div class="row mt-3">
       <div class="col-md-2">
         <div class="form-group">
           <label for="id">Código</label>
@@ -89,10 +89,10 @@
     <div class="row">
       <div class="col-md-12">
         <hr />
-        {{ produto }}
+        <!-- {{ produto }} -->
       </div>
       <div class="col-md-12 mt-3">
-        check {{ continuarAdicionando }}
+        <!-- check {{ continuarAdicionando }} -->
         <div v-show="modoCadastro" class="form-check-inline">
           <label for="" class="form-check-label">
             <input
@@ -117,6 +117,7 @@
 <script>
 import produtoService from "@/api/produto-service";
 import Produto from "../models/Produto";
+import ConversorDeData from '../utils/conversor-data'
 
 export default {
   name: "ProdutoView",
@@ -158,6 +159,9 @@ export default {
         return;
       }
 
+      // this.produto.dataCadastro = 
+      //   ConversorDeData.aplicarMascaraISOEmFormatoAmericano(this.produto.dataCadastro);
+
       produtoService
         .cadastrar(this.produto)
         .then(() => {
@@ -173,11 +177,27 @@ export default {
         });
     },
 
+    atualizarData() {
+      return ConversorDeData.aplicarMascaraISOEmFormatoAmericano(this.produto.dataCadastro);
+    },
+
     atualizarProduto() {
       if (!this.produto.modeloValidaParaAtualizar()) {
         alert("O código e nome do produto são obrigatórios.");
         return;
       }
+
+      this.produto.dataCadastro = 
+         ConversorDeData.aplicarMascaraISOEmFormatoAmericano(this.produto.dataCadastro);
+
+      produtoService.atualizar(this.produto)
+      .then(() => {
+        alert("Produto atualizado com sucesso!");
+        this.$router.push({ name: "ControleDeProdutos" });
+      })
+      .catch( error => {
+        console.log(error);
+      })
     },
 
     salvarProduto() {

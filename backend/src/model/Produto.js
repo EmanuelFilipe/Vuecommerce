@@ -6,5 +6,6 @@ module.exports = class Produto {
         this.valor = obj.valor;
         this.quantidadeEstoque = obj.quantidadeEstoque;
         this.dataCadastro = obj.dataCadastro;
+        this.observacao = obj.observacao;
     }
 }

@@ -1,3 +1,5 @@
+//import mascaraDeData from '../utils/conversor-data'
+
 export default class Produto {
     constructor(obj) {
         // se for nulo, recebe um objeto vazio
@@ -6,7 +8,8 @@ export default class Produto {
         this.nome = obj.nome;
         this.valor = obj.valor || 0;
         this.quantidadeEstoque = obj.quantidadeEstoque || 0; 
-        this.dataCadastro = obj.dataCadastro
+        this.dataCadastro = obj.dataCadastro;
+        this.observacao = obj.observacao;
     }
 
     modeloValidaParaCadastro(){

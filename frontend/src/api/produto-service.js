@@ -29,9 +29,12 @@ function cadastrar(produto) {
 }
 
 function atualizar(produto) {
+    
     return new Promise((resolve, reject) => {
-        return api.put(`/produtos/`, produto)
-        .then(response => resolve(response)) // devolve pra quem ta chamando
+        return api.put(`/produtos/${produto.id}`, produto)
+        .then(response => {
+            resolve(response)
+        }) // devolve pra quem ta chamando
         .catch(error => reject(error));
     })
 }
