@@ -33,8 +33,8 @@
               <td>{{item.valor | real }}</td>
               <td>{{ item.dataCadastro | data }}</td>
               <td>
-                <i @click="editarProduto(item)" class="bi bi-pencil-fill icones-tabela"></i>
-                <i @click="excluirProduto(item)" class="bi bi-trash3-fill icones-tabela"></i>
+                <i @click="editarProduto(item)" class="bi bi-pencil-fill icones-tabela" title="Editar"></i>
+                <i @click="excluirProduto(item)" class="bi bi-trash3-fill icones-tabela" title="Excluir"></i>
               </td>
             </tr>
           </tbody>
@@ -57,7 +57,7 @@ export default {
   components: { Button },
   filters: {
     data(data) {
-      return conversorDeData.aplicarMascaraDataHoraEmDataIso(data)
+      return conversorDeData.aplicarMascaraEmDataIso(data)
     },
     real(valor){
       return conversorMonetario.aplicarMascaraParaRealComPrefixo(valor);
@@ -69,11 +69,21 @@ export default {
     };
   },
   methods: {
+
+    ordenarProdutos(a, b){
+      // A < B = -1
+      // A > B = 1
+      // A == B = 0
+
+      return (a.id < b.id) ? -1 : (a.id > b.id) ? 1 : 0;
+    },
+
     obterTodosOsProdutos() {
       produtoService.obterTodos()
         .then(response => {
           // para cada item irá criar uma nova estância de produtoModel
-          this.produtos = response.data.map(p => new produtoModel(p));
+          let produtos = response.data.map(p => new produtoModel(p));
+          this.produtos = produtos.sort(this.ordenarProdutos).reverse();
         })
         .catch(error =>{
           console.log(error);
@@ -92,7 +102,22 @@ export default {
     },
 
     excluirProduto(produto) {
-      alert('excluir produto');
+      if (confirm(`Deseja excluir o produto "${produto.id} - ${produto.nome}"`)) {
+
+        produtoService.deletar(produto.id)
+        .then(() => {
+          // apagando o registro da lista de produtos
+          let indice = this.produtos.findIndex(p => p.id == produto.id);
+          this.produtos.splice(indice, 1);
+
+          setTimeout(() => {
+            alert("produto excluído com sucesso!");
+          }, 500);
+        })
+        .catch(error => {
+          console.error(error);
+        })
+      }
     },
   },
   created() {

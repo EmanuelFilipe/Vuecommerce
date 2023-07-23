@@ -159,8 +159,8 @@ export default {
         return;
       }
 
-      // this.produto.dataCadastro = 
-      //   ConversorDeData.aplicarMascaraISOEmFormatoAmericano(this.produto.dataCadastro);
+      this.produto.dataCadastro = 
+         ConversorDeData.aplicarMascaraISOEmFormatoAmericano(this.produto.dataCadastro);
 
       produtoService
         .cadastrar(this.produto)
@@ -175,10 +175,6 @@ export default {
         .catch((error) => {
           console.error(error);
         });
-    },
-
-    atualizarData() {
-      return ConversorDeData.aplicarMascaraISOEmFormatoAmericano(this.produto.dataCadastro);
     },
 
     atualizarProduto() {
