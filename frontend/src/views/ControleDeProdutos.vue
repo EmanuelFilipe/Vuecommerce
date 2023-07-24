@@ -69,7 +69,6 @@ export default {
     };
   },
   methods: {
-
     ordenarProdutos(a, b){
       // A < B = -1
       // A > B = 1
@@ -98,30 +97,48 @@ export default {
     editarProduto(produto) {
       // params recebe um objeto para poder receber parametros pela rota
       this.$router.push({ name: 'EditarProduto', params: { id: produto.id } });
-      alert('editar produto: ' + produto.nome);
     },
 
     excluirProduto(produto) {
-      if (confirm(`Deseja excluir o produto "${produto.id} - ${produto.nome}"`)) {
 
-        produtoService.deletar(produto.id)
-        .then(() => {
-          // apagando o registro da lista de produtos
-          let indice = this.produtos.findIndex(p => p.id == produto.id);
-          this.produtos.splice(indice, 1);
+      this.$swal({
+        icon: "question",
+        title: "Deseja excluir o produto",
+        text: `Código: ${produto.id} - Nome: ${produto.nome}`,
+        showCancelButton: true,
+        confirmButtonColor: "#1c223b",
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Sim',
+        cancelButtonText: 'Não',
+        animate: true
+      }).then((result) => {
+        if (result.isConfirmed) {
 
-          setTimeout(() => {
-            alert("produto excluído com sucesso!");
-          }, 500);
-        })
-        .catch(error => {
-          console.error(error);
-        })
-      }
+          produtoService.deletar(produto.id)
+          .then(() => {
+            // apagando o registro da lista de produtos
+            let indice = this.produtos.findIndex(p => p.id == produto.id);
+            this.produtos.splice(indice, 1);
+
+            //setTimeout(() => {
+              this.$swal({
+                icon: "success",
+                title: "Produto excluído com sucesso!",
+                animate: true,
+                showConfirmButton: false,
+                timer: 1500,
+              });
+            //}, 500);
+          })
+          .catch(error => {
+            console.error(error);
+          })
+        }
+      })
     },
   },
   created() {
-    this.obterTodosOsProdutos()
+    this.obterTodosOsProdutos();
   }
 };
 </script>

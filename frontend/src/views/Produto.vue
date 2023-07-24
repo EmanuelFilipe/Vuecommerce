@@ -117,7 +117,7 @@
 <script>
 import produtoService from "@/api/produto-service";
 import Produto from "../models/Produto";
-import ConversorDeData from '../utils/conversor-data'
+import ConversorDeData from "../utils/conversor-data";
 
 export default {
   name: "ProdutoView",
@@ -146,6 +146,13 @@ export default {
         })
         .catch((error) => {
           console.log(error);
+          this.$swal({
+            icon: "error",
+            title: "Não foi possível obter o produto pelo id " + id,
+            animate: true,
+            showConfirmButton: false,
+            timer: 1500,
+          });
         });
     },
     cancelarAcao() {
@@ -155,17 +162,31 @@ export default {
 
     cadastrarProduto() {
       if (!this.produto.modeloValidaParaCadastro()) {
-        alert("O nome do produto é obrigatório para o cadastro.");
+        this.$swal({
+          icon: "warning",
+          title: "O nome do produto é obrigatório para o cadastro.",
+          animate: true,
+          showConfirmButton: true,
+          confirmButtonColor: "#1c223b",
+        });
         return;
       }
 
-      this.produto.dataCadastro = 
-         ConversorDeData.aplicarMascaraISOEmFormatoAmericano(this.produto.dataCadastro);
+      this.produto.dataCadastro =
+        ConversorDeData.aplicarMascaraISOEmFormatoAmericano(
+          this.produto.dataCadastro
+        );
 
       produtoService
         .cadastrar(this.produto)
         .then(() => {
-          alert("Produto cadastrado com sucesso!");
+          this.$swal({
+            icon: "success",
+            title: "Produto cadastrado com sucesso!",
+            animate: true,
+            showConfirmButton: false,
+            timer: 1500,
+          });
           // limpa o produto após o cadastro
           this.produto = new Produto();
 
@@ -173,31 +194,59 @@ export default {
             this.$router.push({ name: "ControleDeProdutos" });
         })
         .catch((error) => {
-          console.error(error);
+          console.log(error);
+          this.$swal({
+            icon: "error",
+            title: "Não foi possível cadastrar o Produto!",
+            animate: true,
+            showConfirmButton: false,
+            timer: 1500,
+          });
         });
     },
 
     atualizarProduto() {
       if (!this.produto.modeloValidaParaAtualizar()) {
-        alert("O código e nome do produto são obrigatórios.");
+        this.$swal({
+          icon: "warning",
+          title: "O código e nome do produto são obrigatórios.",
+          animate: true,
+          showConfirmButton: true,
+          confirmButtonColor: "#1c223b",
+        });
         return;
       }
 
-      this.produto.dataCadastro = 
-         ConversorDeData.aplicarMascaraISOEmFormatoAmericano(this.produto.dataCadastro);
+      this.produto.dataCadastro =
+        ConversorDeData.aplicarMascaraISOEmFormatoAmericano(
+          this.produto.dataCadastro
+        );
 
-      produtoService.atualizar(this.produto)
-      .then(() => {
-        alert("Produto atualizado com sucesso!");
-        this.$router.push({ name: "ControleDeProdutos" });
-      })
-      .catch( error => {
-        console.log(error);
-      })
+      produtoService
+        .atualizar(this.produto)
+        .then(() => {
+          this.$swal({
+            icon: "success",
+            title: "Produto atualizado com sucesso!",
+            animate: true,
+            showConfirmButton: false,
+            timer: 2000,
+          });
+          this.$router.push({ name: "ControleDeProdutos" });
+        })
+        .catch((error) => {
+          console.log(error);
+          this.$swal({
+            icon: "error",
+            title: "Não foi possível atualizar o Produto!",
+            animate: true,
+            showConfirmButton: false,
+            timer: 2000,
+          });
+        });
     },
 
     salvarProduto() {
-      console.log("this.modoCadastro", this.modoCadastro);
       this.modoCadastro ? this.cadastrarProduto() : this.atualizarProduto();
     },
   },
