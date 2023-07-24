@@ -7,11 +7,13 @@
             <Input 
                 label="E-mail" 
                 placeHolder="exemplo@gmail.com"
+                v-model="usuario.email"
             />
             <Input 
                 label="Senha" 
                 placeHolder="123456"
                 type="password"
+                v-model="usuario.senha"
             />
 
             <Button 
@@ -30,10 +32,18 @@ import Button from "@/components/button/Button.vue";
     export default {
         name: "LoginView",
         components: { Input, Button },
+        data() {
+            return {
+                usuario: {
+                    email: '',
+                    senha: ''
+                }
+            }
+        },
         methods: {
             login(){
                 // logica para acessar o sistema
-                this.$router.push({ name: 'Dashboard'});
+                this.$router.push({ name: 'ControleDeProdutos'});
             }
         }
     }    

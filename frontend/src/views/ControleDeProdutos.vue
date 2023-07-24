@@ -10,6 +10,9 @@
       <div class="col-md-2">
         <Button :callBack="adicionarProduto" value="Adicionar" />
       </div>
+      <div class="col-md-10">
+        <a @click="verProdutosEmCards" class="float-right ver-em-cards">Ver em cards</a>
+      </div>
     </div>
 
     <div class="row">
@@ -47,28 +50,22 @@
 <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
 <script>
 import Button from "@/components/button/Button.vue";
-import produtoService from '../api/produto-service.js';
-import produtoModel from '../models/Produto.js';
-import conversorDeData from '../utils/conversor-data.js';
-import conversorMonetario from '../utils/conversor-monetario.js';
+import ProdutoMixin from "../mixins/produto-mixin";
 
 export default {
   name: "ControleDeProdutos",
+  mixins: [ProdutoMixin],
   components: { Button },
-  filters: {
-    data(data) {
-      return conversorDeData.aplicarMascaraEmDataIso(data)
-    },
-    real(valor){
-      return conversorMonetario.aplicarMascaraParaRealComPrefixo(valor);
-    }
-  },
   data() {
     return {
-      produtos: []
     };
   },
   methods: {
+
+    verProdutosEmCards() {
+      this.$router.push({ name: 'ListaProdutoCards'})
+    },
+
     ordenarProdutos(a, b){
       // A < B = -1
       // A > B = 1
@@ -77,69 +74,14 @@ export default {
       return (a.id < b.id) ? -1 : (a.id > b.id) ? 1 : 0;
     },
 
-    obterTodosOsProdutos() {
-      produtoService.obterTodos()
-        .then(response => {
-          // para cada item irá criar uma nova estância de produtoModel
-          let produtos = response.data.map(p => new produtoModel(p));
-          this.produtos = produtos.sort(this.ordenarProdutos).reverse();
-        })
-        .catch(error =>{
-          console.log(error);
-        })
-    },
 
     adicionarProduto() {
       // name é o que esta na propriedade 'name' do routes.js
       this.$router.push({ name: 'NovoProduto'});
     },
     
-    editarProduto(produto) {
-      // params recebe um objeto para poder receber parametros pela rota
-      this.$router.push({ name: 'EditarProduto', params: { id: produto.id } });
-    },
-
-    excluirProduto(produto) {
-
-      this.$swal({
-        icon: "question",
-        title: "Deseja excluir o produto",
-        text: `Código: ${produto.id} - Nome: ${produto.nome}`,
-        showCancelButton: true,
-        confirmButtonColor: "#1c223b",
-        cancelButtonColor: '#d33',
-        confirmButtonText: 'Sim',
-        cancelButtonText: 'Não',
-        animate: true
-      }).then((result) => {
-        if (result.isConfirmed) {
-
-          produtoService.deletar(produto.id)
-          .then(() => {
-            // apagando o registro da lista de produtos
-            let indice = this.produtos.findIndex(p => p.id == produto.id);
-            this.produtos.splice(indice, 1);
-
-            //setTimeout(() => {
-              this.$swal({
-                icon: "success",
-                title: "Produto excluído com sucesso!",
-                animate: true,
-                showConfirmButton: false,
-                timer: 1500,
-              });
-            //}, 500);
-          })
-          .catch(error => {
-            console.error(error);
-          })
-        }
-      })
-    },
+    
   },
-  created() {
-    this.obterTodosOsProdutos();
-  }
 };
 </script>
 
@@ -148,9 +90,14 @@ h1 {
   color: red;
 }
 
-.icones-tabela {
+.icones-tabela,
+.ver-em-cards {
   margin: 5px;
   cursor: pointer;
   color: var(--color-primary);
+}
+
+.ver-em-cards {
+  margin-top: 25px;
 }
 </style>
