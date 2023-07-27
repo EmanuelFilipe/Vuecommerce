@@ -28,22 +28,43 @@
 <script>
 import Input from "@/components/input/Input.vue";
 import Button from "@/components/button/Button.vue";
+import Usuario from '../models/Usuario'
+import usuarioService from "../api/usuario-service"
+import UtilsStorage from '../utils/storage'
 
     export default {
         name: "LoginView",
         components: { Input, Button },
         data() {
             return {
-                usuario: {
-                    email: '',
-                    senha: ''
-                }
+                usuario: new Usuario()
             }
         },
         methods: {
             login(){
-                // logica para acessar o sistema
-                this.$router.push({ name: 'ControleDeProdutos'});
+
+                if(!this.usuario.modeloValidoLogin()){
+
+                    this.$swal({
+                            icon: "warning",
+                            title: "Email e Senha são obrigatórios.",
+                            confirmButtonColor: "#1c223b",
+                            animate: true
+                        })
+                    return;
+                }
+
+                usuarioService.login(this.usuario.email, this.usuario.senha)
+                    .then(response => {
+                        this.usuario = new Usuario(response.data.usuario);
+                        UtilsStorage.SalvarUsuarioNaStorage(this.usuario);
+                        UtilsStorage.SalvarTokenNaStorage(response.data.token);
+
+                        this.$router.push({ name: 'ControleDeProdutos'});
+                    })
+                    .catch(error => {
+                        console.error(error)
+                    })
             }
         }
     }    
