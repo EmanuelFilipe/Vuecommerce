@@ -63,7 +63,14 @@ import UtilsStorage from '../utils/storage'
                         this.$router.push({ name: 'ControleDeProdutos'});
                     })
                     .catch(error => {
-                        console.error(error)
+                        console.error(error);
+                        this.$swal({
+                            icon: "error",
+                            title: error.message,
+                            animate: true,
+                            showConfirmButton: true,
+                            confirmButtonColor: "#1c223b",
+                        });
                     })
             }
         }

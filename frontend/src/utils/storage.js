@@ -10,7 +10,7 @@ function ObterUsuarioNaStorage() {
 }
 
 function RemoverUsuarioNaStorage(usuario) {
-    localStorage.removeItem('usuario');
+    localStorage.removeItem('usuario', usuario);
 }
 
 function SalvarTokenNaStorage(token) {
@@ -22,7 +22,7 @@ function ObterTokenNaStorage() {
 }
 
 function RemoverTokenNaStorage(token) {
-    localStorage.removeItem('token');
+    localStorage.removeItem('token', token);
 }
 
 export default {

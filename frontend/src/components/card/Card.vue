@@ -7,9 +7,9 @@
         <p class="valor">
             <slot name="valor"></slot>
         </p>
-        <p>
+        <!-- <p>
             <slot name="observacao"></slot>
-        </p>
+        </p> -->
         <div>
             <slot name="acoes"></slot>
         </div>
@@ -38,6 +38,7 @@
     margin-bottom: 15px;
     text-align: center;
     padding: 10px;
+    display: flow;
 }
 
 .valor {

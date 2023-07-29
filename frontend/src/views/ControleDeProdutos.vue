@@ -10,8 +10,8 @@
       <div class="col-md-2">
         <Button :callBack="adicionarProduto" value="Adicionar" />
       </div>
-      <div class="col-md-10">
-        <a @click="verProdutosEmCards" class="float-right ver-em-cards">Ver em cards</a>
+      <div class="col d-flex justify-content-between">
+        <button  @click="verProdutosEmCards" class="btn ml-auto ver-card bi bi-images" title="Ver em Cards" ></button>
       </div>
     </div>
 
@@ -100,4 +100,17 @@ h1 {
 .ver-em-cards {
   margin-top: 25px;
 }
+
+.ver-card {
+    background-color: var(--color-primary);
+    color: white;
+    width: 160px;
+    height: 40px;
+    margin-top: 8px;
+    font-size: 20px;
+}
+.ver-card:hover {
+    background-color: var(--color-secondary);
+}
+
 </style>

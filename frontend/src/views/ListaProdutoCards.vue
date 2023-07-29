@@ -3,6 +3,12 @@
         <div class="row">
             <div class="col-sm-12">
                 <h1 class="titulo">Cards de produtos</h1>
+                <hr>
+            </div>
+        </div>
+        <div class="row mt-2">
+            <div class="col d-flex justify-content-between">
+                <button @click="verProdutosEmLista" class="btn ml-auto ver-card bi bi-card-list" title="Ver em Lista"></button>
             </div>
         </div>
         <div class="row mt-3">
@@ -43,11 +49,24 @@ import ProdutoMixin from "../mixins/produto-mixin";
             }
         },
         methods: {
-            
+            verProdutosEmLista() {
+            this.$router.push({ name: 'ControleDeProdutos'})
+        },
         },
     }
 </script>
 
 <style scoped>
+.ver-card {
+    background-color: var(--color-primary);
+    color: white;
+    width: 160px;
+    height: 40px;
+    margin-top: 8px;
+    font-size: 20px;
+}
 
+.ver-card:hover {
+    background-color: var(--color-secondary);
+}
 </style>
