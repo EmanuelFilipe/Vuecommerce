@@ -103,7 +103,7 @@
             Continuar adicionando
           </label>
         </div>
-        <button @click="cancelarAcao" class="btn btn-default float-right">
+        <button @click="cancelarAcao" class="btn btn-light float-right">
           Cancelar
         </button>
         <button @click="salvarProduto" class="btn btn-primary float-right mr-2">

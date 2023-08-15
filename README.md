@@ -21,5 +21,6 @@ Criação de um E-Commerce SPA com Vue2
     execute o comando no terminal para baixar todas as dependências: npm i   
 - execute o comando: npm run serve
   o app irá rodar no localhost
-  
-- teste
+
+## teste
+linha de teste

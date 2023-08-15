@@ -65,7 +65,6 @@ hr {
   border: var(--color-primary) !important;
   outline: none;
   box-shadow: none;
-  min-width: 90px;;
 }
 
 .btn-primary:hover {
@@ -73,4 +72,10 @@ hr {
     background-color: var(--color-secondary) !important;
     border: var(--color-secondary) !important;
 } 
+
+.btn-light {
+  border: 1px solid #6c757d;
+  height: 36px;
+}
+
 </style>
