@@ -22,3 +22,4 @@ Criação de um E-Commerce SPA com Vue2
 - execute o comando: npm run serve
   o app irá rodar no localhost
   
+- teste
