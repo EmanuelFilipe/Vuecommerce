@@ -13,7 +13,10 @@
         </div>
         <div class="row mt-3">
             <div v-for="produto in produtos" :key="produto.id">
-                <Card>  
+                <Card>                      
+                    <template v-slot:foto>
+                        <img :src="produto.foto" :alt="produto.name" width="100%"/>
+                    </template>
                     <template v-slot:nome>
                         {{ produto.nome }}
                     </template>
@@ -50,8 +53,8 @@ import ProdutoMixin from "../mixins/produto-mixin";
         },
         methods: {
             verProdutosEmLista() {
-            this.$router.push({ name: 'ControleDeProdutos'})
-        },
+                this.$router.push({ name: 'ControleDeProdutos'})
+            },
         },
     }
 </script>

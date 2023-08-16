@@ -34,7 +34,7 @@ let produtoMixin = {
         .then(response => {
           // para cada item irá criar uma nova estância de produtoModel
           let produtos = response.data.map(p => new produtoModel(p));
-          this.produtos = produtos.sort(this.ordenarProdutos).reverse();
+          this.produtos = produtos.sort(this.ordenarProdutos).reverse();        
         })
         .catch(error =>{
           console.log(error);

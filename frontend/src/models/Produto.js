@@ -10,6 +10,7 @@ export default class Produto {
         this.quantidadeEstoque = obj.quantidadeEstoque || 0; 
         this.dataCadastro = obj.dataCadastro && mascaraDeData.aplicarMascaraFormatoAmericanoEmDataISO(obj.dataCadastro);
         this.observacao = obj.observacao;
+        this.foto = obj.foto;
     }
 
     modeloValidaParaCadastro(){
