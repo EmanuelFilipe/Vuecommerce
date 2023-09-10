@@ -1,3 +1,6 @@
+https://github.com/EmanuelFilipe/Vuecommerce/assets/51516363/48515745-829b-4c29-b04f-613ae349e5f8
+
+
 # Vuecommerce
 Criação de um E-Commerce SPA com Vue2
 
