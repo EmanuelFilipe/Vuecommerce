@@ -5,7 +5,7 @@ https://github.com/EmanuelFilipe/Vuecommerce/assets/51516363/48515745-829b-4c29-
   Vuecommerce
 </h1>
 
-<p align="center">Criação de um E-Commerce SPA com Vue2</p>
+<p align="center">Creating an E-Commerce SPA with Vue2</p>
 
 <p align="center">
   <a href="https://opensource.org/licenses/MIT">
@@ -19,26 +19,26 @@ https://github.com/EmanuelFilipe/Vuecommerce/assets/51516363/48515745-829b-4c29-
 - ⚛️ **React Js** — A JavaScript library for building user interfaces
 - ⚛️ **React Native** — A lib that provides a way to create native apps for Android and iOS
 - 💹 **Node Js** — A web framework for Node Js 
--->
 - <img align="center" alt="Filipe-CSharp" width="20" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/csharp/csharp-original.svg"/> **C#** — backend language used in this project
+-->
 - <img align="center" alt="Filipe-vue" width="20" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vuejs/vuejs-original-wordmark.svg" /> **Vue.JS** — A library used for building user interfaces
-- 💹 **Node Js** — A web framework for Node Js, utilizado para criação de um banco de dados em memória
+- 💹 **Node Js** — A web framework for Node Js used to create an in-memory database
   
 ## Getting started
 
-1. Clone este repositório usando <strong> git clone https://github.com/EmanuelFilipe/Vuecommerce.git </strong>
-2. Vá para o diretório apropriado: <strong>cd Vuecommerce </strong>
-3. Execute <strong>npm i instalar dependências </strong>
+1. Clone this repo using: **`git clone https://github.com/EmanuelFilipe/Vuecommerce.git`**
+2. Move yourself to the appropriate directory: **`cd Vuecommerce`** </strong>
+3. Run the command **`npm i`** for instal all the dependencies
 
 ## Primeiros passos com o servidor back-end
-1. Crie um novo terminal e vá para o diretório apropriado: <strong>cd backend </strong>
-2. Execute o comando: <strong>npm start </strong> para inicializar o banco de dados em node.js<br>
-     irá rodar a API na porta <strong>3400 </strong>
+1. Create a new terminal and move yourself to the appropriate directory: **`cd backend-node-em-memoria`**
+2. Run the command: **`npm start`** to initialize database in node.js<br>
+   will running the api in the port **3400** </strong>
 
 ## Primeiros passos com o aplicativo front-end
-1. Crie um novo terminal e vá para o diretório frontend: <strong>cd frontend </strong>
-2. execute o comando: npm run serve <br>
-     o app irá rodar no localhost
+1. Create a new terminal and move yourself to the appropriate directory: **`cd frontend`**
+2. Run the command: **`npm run serve`** <br>
+   the app will run on **localhost**
 
 ## License
 
