@@ -25,19 +25,18 @@ https://github.com/EmanuelFilipe/Vuecommerce/assets/51516363/48515745-829b-4c29-
 - 💹 **Node Js** — A web framework for Node Js used to create an in-memory database
   
 ## Getting started
-
 1. Clone this repo using: **`git clone https://github.com/EmanuelFilipe/Vuecommerce.git`**
-2. Move yourself to the appropriate directory: **`cd Vuecommerce`** </strong>
-3. Run the command **`npm i`** for instal all the dependencies
 
-## Primeiros passos com o servidor back-end
+## Getting started with the backend server
 1. Create a new terminal and move yourself to the appropriate directory: **`cd backend-node-em-memoria`**
-2. Run the command: **`npm start`** to initialize database in node.js<br>
+2. Run the command **`npm i`** for instal all the dependencies
+3. Run the command: **`npm start`** to initialize database in node.js<br>
    will running the api in the port **3400** </strong>
 
-## Primeiros passos com o aplicativo front-end
+## Getting started with the frontend app
 1. Create a new terminal and move yourself to the appropriate directory: **`cd frontend`**
-2. Run the command: **`npm run serve`** <br>
+2. Run the command **`npm i`** for instal all the dependencies
+3. Run the command: **`npm run serve`** <br>
    the app will run on **localhost**
 
 ## License
